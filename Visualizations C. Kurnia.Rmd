@@ -1,0 +1,41 @@
+---
+title: "Visualizations"
+author: "Clarentia Kurnia"
+date: "4/16/2022"
+output: word_document
+---
+
+#Libraries
+```{r}
+
+#install.packages("ggplot2")
+#install.packages("tidyverse")
+#install.packages("readr")
+library(ggplot2)
+library(tidyverse)
+library(readr)
+```
+
+#Data
+```{r}
+url <- "https://raw.githubusercontent.com/fivethirtyeight/data/master/alcohol-consumption/drinks.csv"
+
+drinks <- read_csv(url(url))
+```
+
+This scatterplot shows the range of alcohol consumed by more than 100 countries around the world. We have countries that consume no alcohol at all, while some others consume nearly 15 litres of alcohol.
+
+#Scatterplot
+```{r, echo=FALSE}
+ggplot(data=drinks,aes(x=country, y=total_litres_of_pure_alcohol)) + geom_point()
+```
+
+This bar chart shows the top 3 countries which consume the most alcohol. In order, Belarus drinks the most, followed by Lithuania, then Andorra.
+
+#Bar chart
+```{r, echo=FALSE}
+x<-c("Belarus","Lithuania","Andorra")
+y<-c(14.4,12.9,12.4)
+#png(file="top3_countries_alcohol")
+barplot(y,names.arg = x,xlab = "Countries",ylab = "Total Litres of Alcohol",col = "black",border = "white",main = "Top 3 Countries' Alcohol Consumption")
+```
